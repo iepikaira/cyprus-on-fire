@@ -1,1 +1,119 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Το Αβύθιστο Οικόπεδο</title>
+<style>
+:root{--paper:#f4e7be;--ink:#18130e;--red:#a52c19;--yellow:#f0c84b;--blue:#294f67;--panel:#fff8dc;}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(circle at 2px 2px,rgba(20,15,5,.17) 1.2px,transparent 1.5px) 0 0/9px 9px,var(--paper);color:var(--ink);font-family:Georgia,'Times New Roman',serif;line-height:1.55;}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(120,75,20,.07),transparent 15%,transparent 85%,rgba(120,75,20,.08));mix-blend-mode:multiply;}
+.wrap{max-width:1200px;margin:auto;padding:24px 18px 56px}
+.hero{position:relative;background:var(--panel);border:6px solid var(--ink);box-shadow:10px 10px 0 var(--ink);padding:22px 22px 28px;transform:rotate(-.4deg);overflow:hidden}
+.hero:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 4px,rgba(0,0,0,.035) 4px 5px);pointer-events:none}
+.kicker{display:inline-block;background:var(--red);color:#fff;letter-spacing:.11em;text-transform:uppercase;font-weight:900;padding:4px 10px;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);transform:rotate(-2deg)}
+h1{font-family:Impact,'Arial Black',sans-serif;letter-spacing:.02em;font-size:clamp(2.3rem,6vw,5.7rem);line-height:.9;margin:14px 0 10px;text-transform:uppercase;text-shadow:3px 3px 0 #fff0a5,6px 6px 0 rgba(0,0,0,.14)}
+.subtitle{font-size:clamp(1rem,2vw,1.25rem);font-style:italic;max-width:900px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 0}
+button{font:inherit;font-weight:900;border:3px solid var(--ink);background:var(--yellow);padding:10px 14px;box-shadow:4px 4px 0 var(--ink);cursor:pointer}
+button:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink)}
+.comic-frame{margin:26px auto 32px;background:#16110d;padding:14px;border:5px solid #000;box-shadow:12px 12px 0 rgba(0,0,0,.35);max-width:1150px;transform:rotate(.4deg)}
+.comic-frame img{display:block;width:100%;height:auto;border:4px solid #000;background:#ddd}
+.caption{background:var(--yellow);border:4px solid var(--ink);padding:9px 12px;margin-top:10px;font-family:Impact,'Arial Black',sans-serif;letter-spacing:.03em;text-transform:uppercase;font-size:1.1rem;transform:rotate(-.7deg)}
+.section{margin:28px 0 0;background:rgba(255,248,220,.84);border:4px solid var(--ink);padding:20px;box-shadow:8px 8px 0 rgba(0,0,0,.14)}
+.section h2{font-family:Impact,'Arial Black',sans-serif;font-size:2rem;margin:0 0 12px;color:var(--red);text-transform:uppercase;border-bottom:3px dashed var(--ink);padding-bottom:7px}
+.scene{margin:20px 0 0;page-break-inside:avoid}
+.scene h3{display:inline-block;background:#111;color:#fff;padding:8px 12px;border:3px solid var(--ink);font-family:Impact,'Arial Black',sans-serif;letter-spacing:.08em;margin:0 0 14px;}
+.dialogue{display:grid;grid-template-columns:minmax(140px,180px) 1fr;gap:10px;margin:11px 0;padding:11px 13px;background:#fffdf0;border:3px solid var(--ink);box-shadow:4px 4px 0 rgba(0,0,0,.15);position:relative}
+.dialogue:before{content:"";position:absolute;left:-10px;top:15px;width:15px;height:15px;background:#fffdf0;border-left:3px solid var(--ink);border-bottom:3px solid var(--ink);transform:rotate(45deg)}
+.speaker{font-family:Impact,'Arial Black',sans-serif;letter-spacing:.03em;text-transform:uppercase;font-size:1.04rem}
+.speaker.proedros{color:#8d2316} .speaker.avlikos{color:#31506a} .speaker.ependitis{color:#6d5314} .speaker.lordos{color:#3e4a37} .speaker.stage{color:#5a4f44}
+.line{font-size:1.1rem}
+.punchline{background:#fff0a5;transform:rotate(-.35deg);border-width:4px}
+.end-note{background:#d9e8d0;border:4px solid var(--ink);padding:15px 16px;font-weight:700;font-style:italic;box-shadow:6px 6px 0 rgba(0,0,0,.12)}
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.card{border:4px solid var(--ink);background:#f9e7c5;padding:14px;box-shadow:6px 6px 0 rgba(0,0,0,.15)}
+.card strong{font-family:Impact,'Arial Black',sans-serif;font-size:1.2rem}
+.footer{margin-top:34px;text-align:center;font-family:Impact,'Arial Black',sans-serif;letter-spacing:.08em;font-size:1.25rem}
+.small{font-size:.9rem;opacity:.82}
+@media(max-width:800px){.dialogue{grid-template-columns:1fr}.dialogue:before{display:none}.info-grid{grid-template-columns:1fr}.wrap{padding:14px 10px 40px}.section{padding:14px}}
+@media print{body{background:#fff}.toolbar{display:none}.hero,.section,.comic-frame,.dialogue{box-shadow:none}.wrap{max-width:none}.comic-frame{break-inside:avoid}}
 
+.inline-comic{margin:24px 0 28px;padding:10px;background:#fff8dc;border:5px solid var(--ink);box-shadow:8px 8px 0 rgba(0,0,0,.18);transform:rotate(-.35deg);}
+.inline-comic:nth-of-type(even){transform:rotate(.35deg);}
+.inline-comic img{display:block;width:100%;height:auto;border:3px solid var(--ink);}
+.inline-comic figcaption{margin-top:8px;text-align:center;font-family:Impact,'Arial Black',sans-serif;letter-spacing:.04em;font-size:.95rem;}
+@media(max-width:800px){.inline-comic{margin:18px 0 22px;padding:7px;box-shadow:5px 5px 0 rgba(0,0,0,.18);}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<span class="kicker">Γεωπολιτικη Επιθεωρηση</span>
+<h1>Το Αβυθιστο<br/>Οικοπεδο</h1>
+<div class="subtitle">Μια γεωπολιτική σάτιρα με άρωμα Λάμπρου Κωνσταντάρα και Βασίλη Αυλωνίτη, χλιαρό χαλούμι, λίγο real estate και μπόλικα βρετανικά καυσαέρια.</div>
+<div class="toolbar">
+<button onclick="window.print()">🖨 Εκτύπωση / PDF</button>
+<button onclick="document.body.classList.toggle('large')">🔎 Μεγάλα γράμματα</button>
+<button onclick="document.getElementById('script').scrollIntoView()">🎬 Πήγαινε στο σενάριο</button>
+</div>
+</header>
+
+<section class="section" id="script">
+<h2>Το σεναριο</h2>
+<div class="scene">
+
+<h3>🎬 ΣΚΗΝΗ 1 — ΤΟ ΧΛΙΑΡΟ ΧΑΛΟΥΜΙ ΚΑΙ Η ΑΥΤΑΠΑΤΗ</h3>
+<div class="dialogue"><div class="speaker stage">ΣΚΗΝΗ:</div><div class="line">Το Προεδρικό Μέγαρο στη Λευκωσία. Ο ΠΡΟΕΔΡΟΣ (με το αρχοντικό, φουσκωμένο ύφος του Λάμπρου Κωνσταντάρα, φορώντας σταυρωτό σακάκι) στέκεται μπροστά σε έναν τεράστιο, πλαστικοποιημένο χάρτη της Μεσογείου. Κοιτάζεται στον καθρέφτη, φτιάχνει τη γραβάτα του και καμαρώνει. Ο ΑΥΛΙΚΟΣ (με το βαρύ, νωχελικό περπάτημα και το μπλαζέ ύφος του Βασίλη Αυλωνίτη) μπαίνει κρατώντας έναν ασημένιο δίσκο.</div></div>
+<div class="dialogue"><div class="speaker proedros">ΠΡΟΕΔΡΟΣ:</div><div class="line">(Χτυπώντας το στήθος του) Γέφυρα! Είμαστε η γέφυρα μεταξύ Ανατολής και Δύσης! Είμαστε το ειρηνικό καταφύγιο ολόκληρης της Ευρώπης! Ένα αβύθιστο αεροπλανοφόρο της διπλωματίας! Έτσι δεν είναι, Χαράλαμπε;</div></div>
+<div class="dialogue"><div class="speaker avlikos">ΑΥΛΙΚΟΣ:</div><div class="line">(Αφήνει τον δίσκο στο γραφείο με θόρυβο) Αβύθιστοι είμαστε, Εξοχότατε, δε λέω. Το πρόβλημα με τα αβύθιστα αεροπλανοφόρα, όμως, είναι ότι όλοι θέλουν να παρκάρουν τα βομβαρδιστικά τους στο κατάστρωμα, αλλά το πετρέλαιο και το πάρκινγκ τα πληρώνουμε εμείς. Σας έφερα και λίγο χλιαρό χαλούμι...</div></div>
+<div class="dialogue"><div class="speaker proedros">ΠΡΟΕΔΡΟΣ:</div><div class="line">(Γυρνάει απότομα, γουρλώνει τα μάτια) Βρε αστοιχείωτε! Βρε αφελή! Τι πετρέλαια και τι παρκαρίσματα μου λες; Εμείς έχουμε την «Τριμερή»! Έχουμε συμμαχίες! Ζούμε το θαύμα των επενδύσεων!</div></div>
+<div class="dialogue"><div class="speaker avlikos">ΑΥΛΙΚΟΣ:</div><div class="line">Ναι, αυτό το θαύμα εξηγεί γιατί το πετρέλαιο κίνησης στη Λεμεσό έφτασε δυο ευρώ το λίτρο. Σε λίγο στα βενζινάδικα δεν θα βάζουμε με την αντλία, θα αγοράζουμε με το καράτι, σε κουτάκι του κοσμηματοπωλείου.</div></div>
+
+<br>
+<h3>🎬 ΣΚΗΝΗ 2 — Η ΕΞΩΣΗ ΜΕ ΕΜΒΑΣΜΑ</h3>
+<div class="dialogue"><div class="speaker stage">ΣΚΗΝΗ:</div><div class="line">Η πόρτα ανοίγει χωρίς χτύπημα. Μπαίνει ο ΙΣΡΑΗΛΙΝΟΣ ΕΠΕΝΔΥΤΗΣ. Φοράει ένα πανάκριβο κοστούμι, κρατάει έναν φάκελο με τίτλους ιδιοκτησίας και μια μεζούρα. Αρχίζει να μετράει το γραφείο του Προέδρου χωρίς να του δώσει σημασία.</div></div>
+<div class="dialogue"><div class="speaker proedros">ΠΡΟΕΔΡΟΣ:</div><div class="line">(Κάνει πίσω, ταραγμένος) Βρε ποιος είναι αυτός; Πώς μπήκες εδώ μέσα βρε; Φρουρά! Φρουρά!</div></div>
+<div class="dialogue"><div class="speaker avlikos">ΑΥΛΙΚΟΣ:</div><div class="line">Τη Φρουρά την αγόρασε, Εξοχότατε. Μαζί με κάτι παραλιακά οικόπεδα στη Λάρνακα και τους λόφους στην Τρόζενα. Τώρα του ανήκει και το χαλί που πατάτε.</div></div>
+<div class="dialogue"><div class="speaker ependitis">ΕΠΕΝΔΥΤΗΣ:</div><div class="line">(Τραβάει τη μεζούρα) Shalom, Εξοχότατε. Ωραίο γραφείο. Ξέρετε, ρίξαμε 3,5 δισεκατομμύρια ευρώ στο νησί. Δεν είναι απλά για παραθεριστικές κατοικίες. Χτίζουμε ιδιωτικές γειτονιές. Gated communities. Με δική μας ασφάλεια και ταμπελάκια στα Εβραϊκά. Ετοιμάζω μάλιστα και ένα τεράστιο kosher resort ακριβώς εκεί που παρκάρετε τώρα την προεδρική λιμουζίνα σας. Παρεμπιπτόντως... αυτό εδώ το Προεδρικό Μέγαρο πωλείται; Γιατί θέλω να ρίξω τον τοίχο πίσω σας, να βγάλω άδεια για πισίνα.</div></div>
+<div class="dialogue"><div class="speaker proedros">ΠΡΟΕΔΡΟΣ:</div><div class="line">(Τραβάει το παντελόνι του ψηλά, τον κοιτάζει λοξά κάτω από τα βαριά του βλέφαρα και μιλάει με εκείνη τη συρτή, μπλαζέ φωνή) Τι να πουληθεί, βρε; Μπελά που βρήκαμε... Γείτονας να σου πετύχει! Για στάσου λιγάκι δηλαδή... Κυρίαρχο κράτος είμαστε, τρομάρα μας. Τι μας πέρασες, το μεσιτικό του κυρ-Μένιου να βγάλουμε ταμπελάκι «ευκαιρία, με φως-νερό-τηλέφωνο» στην καγκελόπορτα; Κάτσε καλά... Δεν είμαστε μεσιτικό γραφείο!</div></div>
+<div class="dialogue"><div class="speaker ependitis">ΕΠΕΝΔΥΤΗΣ:</div><div class="line">(Βγάζει ένα ειρωνικό γελάκι, βγάζει τα γυαλιά ηλίου και τα σκουπίζει στη γραβάτα του Προέδρου) Κυρίαρχο κράτος; Α, ωραίο αστείο! Εμείς είχαμε ένα σχέδιο αγροτικών οικισμών για την Κύπρο από το 1897. Το ανανεώσαμε το 1930. Τώρα, απλά ολοκληρώνουμε τη συναλλαγή.  Αυτό που τα παπαγαλάκια σας λένε «επενδυτικό θαύμα», εμείς το λέμε «έξωση με πάγια εντολή». Βάλτε μια τζίφρα εδώ κάτω δεξιά, σας παρακαλώ, και γρήγορα, γιατί έχω διπλοπαρκάρει το τζετ μου και θα μου πάρουν τις πινακίδες.</div></div>
+
+<br>
+<h3>🎬 ΣΚΗΝΗ 3 — ΤΟ ΑΥΤΟΚΡΑΤΟΡΙΚΟ ΘΕΑΤΡΟ</h3>
+<div class="dialogue"><div class="speaker stage">ΣΚΗΝΗ:</div><div class="line">Ξαφνικά ακούγεται ένας εκκωφαντικός θόρυβος από αεροπλάνα (τζετ). Ο αέρας παίρνει τα χαρτιά από το γραφείο. Μπαίνει ο ΑΓΓΛΟΣ ΛΟΡΔΟΣ, ντυμένος με στρατιωτική στολή παραλλαγής, κρατώντας ένα φλιτζάνι τσάι με το μικρό δαχτυλάκι σηκωμένο.</div></div>
+<div class="dialogue"><div class="speaker lordos">ΛΟΡΔΟΣ:</div><div class="line">Tally-ho, chaps! Λίγη ησυχία, αν είναι εύκολο. Προσπαθώ να συντονίσω μερικά ιπτάμενα τάνκερ από τη βάση του Ακρωτηρίου.</div></div>
+<div class="dialogue"><div class="speaker proedros">ΠΡΟΕΔΡΟΣ:</div><div class="line">(Τραβάει τη γραβάτα του, έτοιμος να εκραγεί) Εσύ από πού ξεφύτρωσες βρε ψηλολέλεκα; Πώς είσαι έτσι βρε; Σαν στεγνωμένη ρέγγα! Σαν μαδημένος φασιανός! Που μου έβαλες και παραλλαγή, τρομάρα σου, και κρατάς το φλιτζάνι με το δαχτυλάκι σηκωμένο, σα μελιτζάνα! Που μου ήρθες μέσα στο Μέγαρο σα λαθρεπιβάτης σε τρεχαντήρι! Τι τάνκερ και τι αεροπλάνα μου λες βρε αστοιχείωτε;</div></div>
+<div class="dialogue"><div class="speaker lordos">ΛΟΡΔΟΣ:</div><div class="line">Oh, don't fuss, old boy. Τα δικά μας συμφέροντα επιβάλλουν να ανεφοδιάζουμε τα βρετανικά αεροσκάφη για να υποστηρίξουμε τις επιδρομές της Σαουδικής Αραβίας εναντίον των Χούθι στην Υεμένη. Αλλά μην ανησυχείτε.</div></div>
+<div class="dialogue"><div class="speaker proedros">ΠΡΟΕΔΡΟΣ:</div><div class="line">Να μην ανησυχώ; Μα βάζετε φωτιά στη Μέση Ανατολή από την αυλή μου! Πώς θα πουλήσω εγώ σταθερότητα και τουρισμό; Θα μας κάψετε βρε, τενεκέ ξεγάνωτε! Βρε ξεκούρδιστο φλογοβόλο! Βρε που κακή ώρα να 'χεις.</div></div>
+<div class="dialogue"><div class="speaker lordos">ΛΟΡΔΟΣ:</div><div class="line">(Ανακατεύει το τσάι του με ένα ασημένιο κουταλάκι κάνοντας έναν εκνευριστικό θόρυβο "τσιν-τσιν-τσιν" και γελάει με ένα πνιχτό "χο-χο-χο") Splendid! Oh, my dear boy, μην ιδρώνετε έτσι, τσαλακώνετε η γραβάτα σας. Η κυβέρνηση της Αυτού Μεγαλειότητος θεωρεί εξαιρετικά ντεμοντέ να σχολιάζει «επιχειρησιακές λεπτομέρειες». Είναι αγενές! Σαν να ρεύεσαι στο Wimbledon... Το δικό σας καθήκον, old chap, είναι απλούστατο: ρουφάτε ευγενικά τα καυσαέρια των μαχητικών μας σαν άρωμα λεβάντας, να χρεοκοπήσετε με βρετανικό φλέγμα, και αν δεχτείτε κανέναν πύραυλο στο κεφάλι... well, stiff upper lip! Καταπιείτε το ρίσκο σαν γνήσιοι τζέντλεμεν. Keep calm, mind the gap και... Cheers!</div></div>
+<div class="dialogue"><div class="speaker avlikos">ΑΥΛΙΚΟΣ:</div><div class="line">(Με το ύφος ανθρώπου που περιμένει το λεωφορείο) Είδατε που σας έλεγα, Εξοχότατε; Βάλαμε στην πλάτη μας τον στόχο για πυραύλους. Και σε λίγο θα σκάσει και το...</div></div>
+
+<br>
+<h3>🎬 ΣΚΗΝΗ 4 — Η ΑΠΟΔΕΙΞΗ ΤΟΥ ΛΟΓΑΡΙΑΣΜΟΥ</h3>
+<div class="dialogue"><div class="speaker stage">ΣΚΗΝΗ:</div><div class="line">Ακούγονται εκκωφαντικές ΣΕΙΡΗΝΕΣ. Τα φώτα αναβοσβήνουν κόκκινα.</div></div>
+<div class="dialogue"><div class="speaker proedros">ΠΡΟΕΔΡΟΣ:</div><div class="line">(Χτυπάει το γραφείο) Τι είναι αυτό το κακό βρε; Τι σφυρίζει έτσι και μου γυρνάει τα μυαλά;</div></div>
+<div class="dialogue"><div class="speaker avlikos">ΑΥΛΙΚΟΣ:</div><div class="line">Ιρανικά drones, Εξοχότατε. Ήρθαν σε απόσταση αναπνοής από το Ακρωτήρι. Ψάχνουν τον Λόρδο. Αλλά επειδή το νησί μας είναι μια σταλιά, αν χάσουν τον Λόρδο, θα βρουν το kosher resort του κυρίου επενδυτή, και αν χάσουν και το resort, θα βρουν το δικό σας κεφάλι!</div></div>
+<div class="dialogue"><div class="speaker proedros">ΠΡΟΕΔΡΟΣ:</div><div class="line">(Αρχίζει να χτυπιέται, βγάζει το σακάκι του, το κάνει μπάλα και προσπαθεί να μπει μισός κάτω από το γραφείο, φορώντας έναν πλαστικοποιημένο χάρτη στο κεφάλι σαν κράνος) Ααα! Η καρδιά μου! Καταστραφήκαμε! Βρε σύμμαχοι! Βρε ισχυροί φίλοι της συμφοράς! Βρε Τριμερή του γλυκού νερού! Κάντε κάτι! Βάλτε ασπίδα! Ανοίξτε το ΝΑΤΟϊκό ομπρελάκι σας να μη μας έρθει ο πύραυλος στο δόξα πατρί! Πετάξτε τους κάνα... κάνα ψήφισμα καταδίκης να τρομάξουν τα drones και οι πύραυλοι! Διαβάστε τους δυνατά την «Ευρωπαϊκή Αλληλεγγύη» μπας και κάνουν αναστροφή! Βρε, ρίξτε τους τις δηλώσεις σταθερότητας να αναχαιτιστούν! Τι καθόσαστε; Βουλιάζει το αβύθιστο αεροπλανοφόρο μου! Χάνω την καρέκλα μου βρε Πανάθεμά σας! Που θα κάνω τον Πρόεδρο τώρα βρε; Στην Τανγκανίκα;</div></div>
+<div class="dialogue"><div class="speaker ependitis">ΕΠΕΝΔΥΤΗΣ:</div><div class="line">(Κοιτάζει το ρολόι του, του πέφτει ο φάκελος, τον αρπάζει από το πάτωμα και οπισθοχωρεί με γρήγορα, μικρά βήματα) Εξοχότατε, μόλις έλαβα push notification! Έχω... επείγουσα τηλεδιάσκεψη για ένα οικόπεδο στη Σελήνη! Το ιδιωτικό μου τζετ περιμένει. Shalom και καλή τύχη! (Φεύγει τρέχοντας πετώντας τη μεζούρα πίσω του)</div></div>
+<div class="dialogue"><div class="speaker lordos">ΛΟΡΔΟΣ:</div><div class="line">Right then! Ώρα να επιστρέφω στην ομίχλη μου. Βαράω στρατηγική υποχώρηση προς τα ανάκτορα του Μπάκιγχαμ. Όχι και να χυθεί καθαρό βρετανικό αίμα! (Πατάει ένα κουμπί στο ρολόι του, πέφτει ένα σκοινί από το ταβάνι, το πιάνει με το ένα χέρι ενώ με το άλλο φτιάχνει τη χωρίστρα του). Τα λέμε όταν σβήσουν οι φωτιές και κουρέψετε ξανά το γκαζόν! Cheerio, peasants!</div></div>
+<div class="dialogue"><div class="speaker proedros">ΠΡΟΕΔΡΟΣ:</div><div class="line">(Μένει μόνος, τρέχει προς την πόρτα φωνάζοντας) Πού πάτε βρε! Πού τρέχετε βρε λιποτάκτες; Βρε θρασύδειλοι! (Πιάνει τον Αυλικό από τους ώμους, τον ταρακουνάει) Χαράλαμπε! Μείναμε μόνοι μας! Πού είναι τα εγγυητήρια συμβόλαια; Πού είναι οι ξένοι σωτήρες μας;</div></div>
+<div class="dialogue"><div class="speaker avlikos">ΑΥΛΙΚΟΣ:</div><div class="line">(Τον κοιτάζει απαθής, βγάζοντας από την τσέπη του μια απόδειξη) Σωτήρες δεν υπάρχουν, Εξοχότατε. Υπάρχουν μόνο ξένα συμφέροντα, που ευχαρίστως θα κάψουν το σπίτι μας για να ζεσταθούν. Ξεπουλήσαμε το χώμα, νοικιάσαμε τον ουρανό για ξένους βομβαρδισμούς, και ανταλλάξαμε την κυριαρχία μας για μια ψευδαίσθηση. Και να τώρα τα drones... η πληρωμή!</div></div>
+<div class="dialogue"><div class="speaker proedros">ΠΡΟΕΔΡΟΣ:</div><div class="line">(Σωριάζεται στην πολυθρόνα του σαν άδειο σακί. Κοιτάζει το κενό) Μείναμε στον άσσο... Μείναμε με τον λογαριασμό... Πού θα κάνω τώρα εγώ του Πρόεδρο;</div></div>
+<div class="dialogue punchline"><div class="speaker avlikos">ΑΥΛΙΚΟΣ:</div><div class="line">Και μιας και το αναφέρατε, να σας βάλω το χλιαρό χαλούμι σε τάπερ, ή θα το φάτε στο δρόμο;</div></div>
+
+<p class="end-note">ΑΥΛΑΙΑ.</p>
+</div>
+</section>
+<footer class="footer">
+  ΑΥΛΑΙΑ • ΧΛΙΑΡΟ ΧΑΛΟΥΜΙ • ΓΕΛΙΟ...
+  <div class="small">Οι ατάκες ανήκουν αποκλειστικά στη σελίδα iEpikaira. Αντιγράφετε ελεύθερα...</div>
+</footer>
+</div>
+<style>
+body.large .line{font-size:1.23rem} body.large .dialogue{padding:14px} body.large h1{font-size:clamp(2.7rem,7vw,6.2rem)}
+</style>
+</body>
+</html>
