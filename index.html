@@ -8,21 +8,31 @@
 :root{--paper:#f4e7be;--ink:#18130e;--red:#a52c19;--yellow:#f0c84b;--blue:#294f67;--panel:#fff8dc;}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:radial-gradient(circle at 2px 2px,rgba(20,15,5,.17) 1.2px,transparent 1.5px) 0 0/9px 9px,var(--paper);color:var(--ink);font-family:Georgia,'Times New Roman',serif;line-height:1.55;}
+body{margin:0;background:radial-gradient(circle at 2px 2px,rgba(20,15,5,.17) 1.2px,transparent 1.5px) 0 0/9px 9px,var(--paper);color:var(--ink);font-family:Georgia,'Times New Roman',serif;line-height:1.55;overflow-x:hidden;}
 body:before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(120,75,20,.07),transparent 15%,transparent 85%,rgba(120,75,20,.08));mix-blend-mode:multiply;}
-.wrap{max-width:1200px;margin:auto;padding:24px 18px 56px}
+.wrap{max-width:1200px;margin:auto;padding:24px 18px 56px; position:relative;}
+
+/* Basic elements */
 .hero{position:relative;background:var(--panel);border:6px solid var(--ink);box-shadow:10px 10px 0 var(--ink);padding:22px 22px 28px;transform:rotate(-.4deg);overflow:hidden}
 .hero:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 4px,rgba(0,0,0,.035) 4px 5px);pointer-events:none}
 .kicker{display:inline-block;background:var(--red);color:#fff;letter-spacing:.11em;text-transform:uppercase;font-weight:900;padding:4px 10px;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);transform:rotate(-2deg)}
 h1{font-family:Impact,'Arial Black',sans-serif;letter-spacing:.02em;font-size:clamp(2.3rem,6vw,5.7rem);line-height:.9;margin:14px 0 10px;text-transform:uppercase;text-shadow:3px 3px 0 #fff0a5,6px 6px 0 rgba(0,0,0,.14)}
 .subtitle{font-size:clamp(1rem,2vw,1.25rem);font-style:italic;max-width:900px}
-.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 0}
-button{font:inherit;font-weight:900;border:3px solid var(--ink);background:var(--yellow);padding:10px 14px;box-shadow:4px 4px 0 var(--ink);cursor:pointer}
-button:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink)}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 0; position:relative; z-index:2;}
+button{font:inherit;font-weight:900;border:3px solid var(--ink);background:var(--yellow);padding:10px 14px;box-shadow:4px 4px 0 var(--ink);cursor:pointer; transition:all 0.1s ease;}
+button:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+button:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+
+/* Comic elements */
 .comic-frame{margin:26px auto 32px;background:#16110d;padding:14px;border:5px solid #000;box-shadow:12px 12px 0 rgba(0,0,0,.35);max-width:1150px;transform:rotate(.4deg)}
 .comic-frame img{display:block;width:100%;height:auto;border:4px solid #000;background:#ddd}
-.caption{background:var(--yellow);border:4px solid var(--ink);padding:9px 12px;margin-top:10px;font-family:Impact,'Arial Black',sans-serif;letter-spacing:.03em;text-transform:uppercase;font-size:1.1rem;transform:rotate(-.7deg)}
-.section{margin:28px 0 0;background:rgba(255,248,220,.84);border:4px solid var(--ink);padding:20px;box-shadow:8px 8px 0 rgba(0,0,0,.14)}
+.inline-comic{margin:24px 0 28px;padding:10px;background:#fff8dc;border:5px solid var(--ink);box-shadow:8px 8px 0 rgba(0,0,0,.18);transform:rotate(-.35deg);}
+.inline-comic:nth-of-type(even){transform:rotate(.35deg);}
+.inline-comic img{display:block;width:100%;height:auto;border:3px solid var(--ink);}
+.inline-comic figcaption{margin-top:8px;text-align:center;font-family:Impact,'Arial Black',sans-serif;letter-spacing:.04em;font-size:.95rem;}
+
+/* Script Section */
+.section{margin:28px 0 0;background:rgba(255,248,220,.84);border:4px solid var(--ink);padding:20px;box-shadow:8px 8px 0 rgba(0,0,0,.14); position:relative; z-index:1;}
 .section h2{font-family:Impact,'Arial Black',sans-serif;font-size:2rem;margin:0 0 12px;color:var(--red);text-transform:uppercase;border-bottom:3px dashed var(--ink);padding-bottom:7px}
 .scene{margin:20px 0 0;page-break-inside:avoid}
 .scene h3{display:inline-block;background:#111;color:#fff;padding:8px 12px;border:3px solid var(--ink);font-family:Impact,'Arial Black',sans-serif;letter-spacing:.08em;margin:0 0 14px;}
@@ -33,19 +43,48 @@ button:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink)}
 .line{font-size:1.1rem}
 .punchline{background:#fff0a5;transform:rotate(-.35deg);border-width:4px}
 .end-note{background:#d9e8d0;border:4px solid var(--ink);padding:15px 16px;font-weight:700;font-style:italic;box-shadow:6px 6px 0 rgba(0,0,0,.12)}
-.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
-.card{border:4px solid var(--ink);background:#f9e7c5;padding:14px;box-shadow:6px 6px 0 rgba(0,0,0,.15)}
-.card strong{font-family:Impact,'Arial Black',sans-serif;font-size:1.2rem}
-.footer{margin-top:34px;text-align:center;font-family:Impact,'Arial Black',sans-serif;letter-spacing:.08em;font-size:1.25rem}
-.small{font-size:.9rem;opacity:.82}
-@media(max-width:800px){.dialogue{grid-template-columns:1fr}.dialogue:before{display:none}.info-grid{grid-template-columns:1fr}.wrap{padding:14px 10px 40px}.section{padding:14px}}
-@media print{body{background:#fff}.toolbar{display:none}.hero,.section,.comic-frame,.dialogue{box-shadow:none}.wrap{max-width:none}.comic-frame{break-inside:avoid}}
 
-.inline-comic{margin:24px 0 28px;padding:10px;background:#fff8dc;border:5px solid var(--ink);box-shadow:8px 8px 0 rgba(0,0,0,.18);transform:rotate(-.35deg);}
-.inline-comic:nth-of-type(even){transform:rotate(.35deg);}
-.inline-comic img{display:block;width:100%;height:auto;border:3px solid var(--ink);}
-.inline-comic figcaption{margin-top:8px;text-align:center;font-family:Impact,'Arial Black',sans-serif;letter-spacing:.04em;font-size:.95rem;}
-@media(max-width:800px){.inline-comic{margin:18px 0 22px;padding:7px;box-shadow:5px 5px 0 rgba(0,0,0,.18);}iframe{width:280px!important;height:233px!important;}}
+/* Footer */
+.footer{margin-top:40px;text-align:center;font-family:Impact,'Arial Black',sans-serif;letter-spacing:.05em;font-size:1.25rem; background:var(--panel); border:4px solid var(--ink); padding:20px; box-shadow:8px 8px 0 rgba(0,0,0,.15); transform:rotate(.5deg);}
+.footer .small{font-size:1rem; opacity:0.9; font-family:Georgia, serif; font-style:italic; margin:15px 0; background:#fff0a5; padding:10px; border:2px dashed var(--ink); font-weight:bold;}
+
+/* Share Button Main */
+.btn-share-main{display:inline-flex; align-items:center; gap:8px; font-size:1.3rem; background:var(--red); color:#fff; border:4px solid var(--ink); box-shadow:6px 6px 0 var(--ink); padding:12px 24px; margin-top:10px; text-transform:uppercase; letter-spacing:1px;}
+.btn-share-main:hover{background:#c0392b; box-shadow:8px 8px 0 var(--ink); transform:translate(-2px,-2px) scale(1.02);}
+
+/* Share Modal Custom Styling */
+.share-overlay{position:fixed; inset:0; background:rgba(24, 19, 14, 0.85); backdrop-filter:blur(4px); z-index:9999; display:flex; justify-content:center; align-items:center; opacity:0; visibility:hidden; transition:all 0.3s ease;}
+.share-overlay.active{opacity:1; visibility:visible;}
+.share-modal{background:var(--paper); border:6px solid var(--ink); box-shadow:16px 16px 0 var(--ink); width:90%; max-width:450px; padding:25px; position:relative; transform:scale(0.8) rotate(-3deg); transition:all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);}
+.share-overlay.active .share-modal{transform:scale(1) rotate(1deg);}
+.share-modal h3{margin:0 0 15px; font-family:Impact,'Arial Black',sans-serif; font-size:2.2rem; color:var(--red); text-transform:uppercase; text-shadow:2px 2px 0 #fff; line-height:1.1;}
+.share-modal p{font-weight:bold; font-size:1.1rem; margin-bottom:20px; font-style:italic;}
+.close-modal{position:absolute; top:-20px; right:-20px; width:46px; height:46px; background:var(--yellow); color:var(--ink); border:4px solid var(--ink); border-radius:50%; font-family:Impact; font-size:1.5rem; display:flex; justify-content:center; align-items:center; cursor:pointer; box-shadow:4px 4px 0 var(--ink); z-index:10;}
+.close-modal:hover{background:var(--red); color:#fff; transform:scale(1.1) rotate(90deg);}
+
+.share-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+.share-btn{display:flex; align-items:center; justify-content:center; gap:8px; width:100%; font-family:Impact,'Arial Black',sans-serif; padding:12px 10px; border:3px solid var(--ink); font-size:1.1rem; box-shadow:4px 4px 0 var(--ink); text-decoration:none; text-transform:uppercase; color:var(--ink); background:#fff; transition:all 0.2s;}
+.share-btn:hover{transform:translate(-2px, -2px); box-shadow:6px 6px 0 var(--ink);}
+.share-btn.fb{background:#1877F2; color:#fff;}
+.share-btn.tw{background:#000000; color:#fff;}
+.share-btn.wa{background:#25D366; color:#ink;}
+.share-btn.vi{background:#7360F2; color:#fff;}
+.share-btn.em{background:#ff9800; color:#fff;}
+.share-btn.cp{background:var(--yellow); color:var(--ink); grid-column:span 2;}
+
+/* Toast Notification (Instead of alert) */
+.toast{position:fixed; bottom:-100px; left:50%; transform:translateX(-50%); background:var(--ink); color:var(--yellow); font-family:Impact,'Arial Black',sans-serif; padding:15px 25px; border:4px solid var(--yellow); box-shadow:0 0 0 4px var(--ink); font-size:1.3rem; z-index:10000; transition:bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);}
+.toast.show{bottom:40px;}
+
+@media(max-width:800px){
+  .dialogue{grid-template-columns:1fr}.dialogue:before{display:none}
+  .wrap{padding:14px 10px 40px}.section{padding:14px}
+  .share-grid{grid-template-columns:1fr;}
+  .share-btn.cp{grid-column:span 1;}
+  iframe{width:100%!important;height:250px!important;}
+}
+@media print{body{background:#fff}.toolbar, .btn-share-main, .share-overlay, .toast{display:none}.hero,.section,.comic-frame,.dialogue{box-shadow:none; transform:none;}.wrap{max-width:none}.comic-frame{break-inside:avoid}}
+body.large .line{font-size:1.23rem} body.large .dialogue{padding:14px} body.large h1{font-size:clamp(2.7rem,7vw,6.2rem)}
 </style>
 </head>
 <body>
@@ -114,11 +153,154 @@ button:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink)}
 
 <footer class="footer">
   ΑΥΛΑΙΑ • ΜΕ ΧΛΙΑΡΟ ΧΑΛΟΥΜΙ • ΓΕΛΙΟ • ΚΑΙ ΤΟΥ ΠΡΟΕΔΡΟΥ ΤΑ ΡΙΑΛΙΑ <b><a target="_blank" href="https://i-epikaira.blogspot.com/2026/09/blog-post_24.html">ΕΔΩ!</a></b>
-  <div class="small">Οι ατάκες ανήκουν αποκλειστικά στη σελίδα iEpikaira. Αντιγράφετε ελεύθερα...</div>
+  <div class="small">Οι ατάκες ανήκουν αποκλειστικά στη σελίδα iEpikaira. Αντιγράφετε ελεύθερα... Η μη προώθηση τιμωρείται αυστηρά! 💥</div>
+  <button class="btn-share-main" onclick="openShare()">🚀 ΠΡΟΩΘΗΣΗ ΣΕ ΟΛΟΥΣ!</button>
 </footer>
 </div>
-<style>
-body.large .line{font-size:1.23rem} body.large .dialogue{padding:14px} body.large h1{font-size:clamp(2.7rem,7vw,6.2rem)}
-</style>
+
+<!-- Custom Share Modal Overlay -->
+<div id="shareOverlay" class="share-overlay" onclick="closeShareOnOutside(event)">
+  <div class="share-modal">
+    <button class="close-modal" onclick="closeShareModal()">X</button>
+    <h3>ΔΙΑΔΩΣΤΕ ΤΟ!</h3>
+    <p>Η μη προώθηση τιμωρείται με... χλιαρό χαλούμι! Μοιραστείτε το άρθρο γρήγορα:</p>
+    <div class="share-grid">
+      <a href="#" class="share-btn fb" onclick="shareSocial('fb', event)">FB Facebook</a>
+      <a href="#" class="share-btn tw" onclick="shareSocial('tw', event)">𝕏 Twitter</a>
+      <a href="#" class="share-btn wa" onclick="shareSocial('wa', event)">💬 WhatsApp</a>
+      <a href="#" class="share-btn vi" onclick="shareSocial('vi', event)">🟣 Viber</a>
+      <a href="#" class="share-btn em" onclick="shareSocial('em', event)">✉️ Email</a>
+      <button class="share-btn cp" onclick="copyPageLink(event)">🔗 Αντιγραφή Συνδέσμου</button>
+    </div>
+  </div>
+</div>
+
+<!-- Custom Toast Notification for Copy -->
+<div id="toast" class="toast">✅ Ο σύνδεσμος αντιγράφηκε!</div>
+
+<script>
+// Get page info for sharing
+const getShareData = () => {
+    // If running in an iframe or testing, window.location.href might be an internal obscure link. 
+    // You can hardcode your real URL here if you want: const url = "https://i-epikaira.blogspot.com/2026/09/blog-post_24.html";
+    const url = window.location.href; 
+    const title = document.title;
+    const text = 'Διαβάστε αυτή τη φοβερή σάτιρα: Ο Λόρδος, ο Επενδυτής και ο Πρόεδρος με την Καρέκλα του...';
+    return { url, title, text };
+};
+
+// Main function to trigger Web Share API or Modal
+function openShare() {
+    const shareData = getShareData();
+    
+    // Check if Native Web Share API is available (Mobile mostly)
+    if (navigator.share) {
+        navigator.share({
+            title: shareData.title,
+            text: shareData.text,
+            url: shareData.url
+        }).catch(err => {
+            // If user cancels, 'AbortError' is thrown. We only show modal on real errors/unsupported.
+            if (err.name !== 'AbortError') {
+                openShareModal();
+            }
+        });
+    } else {
+        // Desktop or not supported -> open custom modal
+        openShareModal();
+    }
+}
+
+// Modal Controls
+function openShareModal() {
+    document.getElementById('shareOverlay').classList.add('active');
+}
+
+function closeShareModal() {
+    document.getElementById('shareOverlay').classList.remove('active');
+}
+
+function closeShareOnOutside(event) {
+    if (event.target === document.getElementById('shareOverlay')) {
+        closeShareModal();
+    }
+}
+
+// Social Share Links Generators
+function shareSocial(platform, event) {
+    event.preventDefault();
+    const data = getShareData();
+    const encodedUrl = encodeURIComponent(data.url);
+    const encodedText = encodeURIComponent(data.text);
+    const encodedTitle = encodeURIComponent(data.title);
+    
+    let shareUrl = '';
+    
+    switch (platform) {
+        case 'fb':
+            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
+            break;
+        case 'tw':
+            shareUrl = `https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}`;
+            break;
+        case 'wa':
+            shareUrl = `https://api.whatsapp.com/send?text=${encodedText} ${encodedUrl}`;
+            break;
+        case 'vi':
+            shareUrl = `viber://forward?text=${encodedText} ${encodedUrl}`;
+            break;
+        case 'em':
+            shareUrl = `mailto:?subject=${encodedTitle}&body=${encodedText} - Διαβάστε το εδώ: ${encodedUrl}`;
+            break;
+    }
+    
+    if (shareUrl) {
+        window.open(shareUrl, '_blank', 'width=600,height=500');
+    }
+}
+
+// Custom Copy to Clipboard with Toast (avoids alert boxes)
+function copyPageLink(event) {
+    event.preventDefault();
+    const url = getShareData().url;
+    
+    // Use modern clipboard API if available, fallback to execCommand for older browsers/iframes
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(showToast).catch(useFallbackCopy);
+    } else {
+        useFallbackCopy(url);
+    }
+    
+    closeShareModal();
+}
+
+function useFallbackCopy(textToCopy) {
+    // Fallback for document.execCommand('copy')
+    const textArea = document.createElement("textarea");
+    textArea.value = typeof textToCopy === 'string' ? textToCopy : getShareData().url;
+    textArea.style.position = "fixed"; 
+    textArea.style.left = "-9999px";
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+        document.execCommand('copy');
+        showToast();
+    } catch (err) {
+        console.error('Η αντιγραφή απέτυχε', err);
+    }
+    document.body.removeChild(textArea);
+}
+
+// Toast notification display logic
+function showToast() {
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000); // hide after 3 seconds
+}
+</script>
 </body>
 </html>
