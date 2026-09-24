@@ -111,7 +111,7 @@ button:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink)}
 </div>
 </div>
 </section>
-  <style>
+<style>
 .magpro-free-content-blocks .widget{
 display:block!important;
 }
@@ -125,7 +125,7 @@ display:block!important;
   height: 0px;
   overflow: hidden;
   pointer-events: none;
-  position: relative; /* Anchors the absolute close button */
+  position: relative; 
 }
 
 .videoDemo-show {
@@ -171,7 +171,7 @@ display:block!important;
 }
 
 .close {
-   position: absolute; /* Changed to float over the video */
+   position: absolute; 
    width: 20px;
    top: 5px;
    right: 5px;
@@ -179,7 +179,7 @@ display:block!important;
    font-size: 25px;
    font-weight: bold;
    text-decoration: none!important;
-   color: white; /* White is much more visible on videos */
+   color: white; 
    text-shadow: 1px 1px 2px black;
    display: flex;
    justify-content: flex-end;
@@ -194,18 +194,6 @@ display:block!important;
   right: 10px;
 }
 
-.black {
-  z-index: 999999;
-  position: relative;
-  top: -40px;
-  left: 90px;
-  font-weight: bold;
-  font-size: 50px;
-  height: 30px;
-  width: 200px;
-  cursor: default;
-}
-
 .videoDemo-show:hover .black{
   display: flex;
   justify-content: flex-end;
@@ -217,10 +205,10 @@ display:block!important;
 <div class="videoDemo">
   <a class="close" onclick="showOrHide()">&times;</a>
   <div class="divDemo">
-     <!-- Specific YouTube Video Embed -->
-     <iframe id="yt-video-frame" width="315" height="277" src="https://www.youtube.com/embed/CMZYuVC8EyI" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+     <!-- Added 'autoplay' to the allow attribute -->
+     <iframe id="yt-video-frame" width="315" height="277" src="https://www.youtube.com/embed/CMZYuVC8EyI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
      
-     <a class="black"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjIdVescVJ0peVikZYT3lXFiFpL1k4cdY2ftaDMJlKv6lxRw2jI95a2XxSZLV36j0G6T-ivv5TKRe2hfs5gcRv-H_7SAToVHQYDVNqluRB2Y4LBZqr0u6xM2hmyeFOPsYWz_A7e12lnX8ap/s0/Epikaira+Banner+popup1.jpeg" width="100" height="80%"/></a>
+     
   </div>
 </div>
 
@@ -233,12 +221,10 @@ function showOrHide() {
   if(button) {
       button.style.display = "none";
   }
-  // Save "closed" state for 24 hours
   localStorage.setItem("desiredTime", JSON.stringify(after));
 }
 
 (function() {
-    // Check if user closed the popup in the last 24 hours
     var desiredTime = localStorage.getItem("desiredTime");
     var shouldShow = true;
     
@@ -254,7 +240,6 @@ function showOrHide() {
     if (shouldShow) {
         var hasTriggered = false;
         
-        // Listen for scrolling
         window.addEventListener('scroll', function() {
             if (hasTriggered) return;
             
@@ -263,17 +248,16 @@ function showOrHide() {
             var documentHeight = document.documentElement.scrollHeight;
             var distanceFromBottom = documentHeight - (scrollPosition + windowHeight);
 
-            // Trigger when 500px from the bottom
             if (distanceFromBottom <= 500) {
                 var videoDiv = document.querySelector('.videoDemo');
                 if (videoDiv) {
                     videoDiv.classList.add('videoDemo-show');
                     hasTriggered = true;
                     
-                    // Trigger autoplay when the popup becomes visible (saves data/bandwidth)
                     var iframe = document.getElementById('yt-video-frame');
                     if (iframe) {
-                        iframe.src += (iframe.src.indexOf('?') === -1 ? '?' : '&') + 'autoplay=1'; 
+                        // Force autoplay. &mute=1 is strictly required by modern browsers for autoplay to trigger!
+                        iframe.src = "https://www.youtube.com/embed/CMZYuVC8EyI?autoplay=1&mute=1"; 
                     }
                 }
             }
