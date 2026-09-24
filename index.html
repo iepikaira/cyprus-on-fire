@@ -111,6 +111,177 @@ button:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink)}
 </div>
 </div>
 </section>
+  <style>
+.magpro-free-content-blocks .widget{
+display:block!important;
+}
+
+#HTML4 iframe { 
+  margin-top: -84px;
+}
+
+.videoDemo {
+  opacity: 0;
+  height: 0px;
+  overflow: hidden;
+  pointer-events: none;
+  position: relative; /* Anchors the absolute close button */
+}
+
+.videoDemo-show {
+  opacity: 1;
+  z-index: 999999;
+  position: fixed;
+  height: 196px;
+  width: 300px;
+  bottom: 5px;
+  left: 5px;
+  overflow: hidden;
+  pointer-events: auto;
+  -webkit-transition: opacity .9s ease-in-out;
+  -moz-transition: opacity .9s ease-in-out;
+  -ms-transition: opacity .9s ease-in-out;
+  -o-transition: opacity .9s ease-in-out;
+}
+
+.videoDemo-show:hover {
+  height: 280px;
+  width: 300px;
+  bottom: 5px;
+  left: 5px;
+  overflow: hidden;
+  -webkit-transition: all .5s ease-in-out;
+  -moz-transition:    all .5s ease-in-out;
+  -o-transition:      all .5s ease-in-out;
+  -ms-transition:     all .5s ease-in-out;
+  transition:         all .5s ease-in-out;
+}
+
+.divDemo {
+  width: 315px; 
+  height: 167px;
+  overflow: hidden;
+  position: relative;
+}
+
+.divDemo:hover{
+  width: 315px; 
+  height: 277px;
+  overflow: hidden;
+}
+
+.close {
+   position: absolute; /* Changed to float over the video */
+   width: 20px;
+   top: 5px;
+   right: 5px;
+   left: auto;
+   font-size: 25px;
+   font-weight: bold;
+   text-decoration: none!important;
+   color: white; /* White is much more visible on videos */
+   text-shadow: 1px 1px 2px black;
+   display: flex;
+   justify-content: flex-end;
+   cursor: pointer;
+   z-index: 1000000;
+}
+
+.mobile .close {
+  width: 30px;
+  height: 43px;
+  font-size: 40px;
+  right: 10px;
+}
+
+.black {
+  z-index: 999999;
+  position: relative;
+  top: -40px;
+  left: 90px;
+  font-weight: bold;
+  font-size: 50px;
+  height: 30px;
+  width: 200px;
+  cursor: default;
+}
+
+.videoDemo-show:hover .black{
+  display: flex;
+  justify-content: flex-end;
+  background-color: black;
+  cursor: default;  
+}
+</style>
+
+<div class="videoDemo">
+  <a class="close" onclick="showOrHide()">&times;</a>
+  <div class="divDemo">
+     <!-- Specific YouTube Video Embed -->
+     <iframe id="yt-video-frame" width="315" height="277" src="https://www.youtube.com/embed/CMZYuVC8EyI" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+     
+     <a class="black"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjIdVescVJ0peVikZYT3lXFiFpL1k4cdY2ftaDMJlKv6lxRw2jI95a2XxSZLV36j0G6T-ivv5TKRe2hfs5gcRv-H_7SAToVHQYDVNqluRB2Y4LBZqr0u6xM2hmyeFOPsYWz_A7e12lnX8ap/s0/Epikaira+Banner+popup1.jpeg" width="100" height="80%"/></a>
+  </div>
+</div>
+
+<script>
+/*<![CDATA[*/ 
+function showOrHide() {
+  var button0 = document.getElementsByClassName("videoDemo-show");
+  var button = button0[0];
+  var after = new Date().getTime() + 24 * 60 * 60 * 1000;
+  if(button) {
+      button.style.display = "none";
+  }
+  // Save "closed" state for 24 hours
+  localStorage.setItem("desiredTime", JSON.stringify(after));
+}
+
+(function() {
+    // Check if user closed the popup in the last 24 hours
+    var desiredTime = localStorage.getItem("desiredTime");
+    var shouldShow = true;
+    
+    if (desiredTime) {
+        try {
+            var time = JSON.parse(desiredTime);
+            if (new Date().getTime() < time) {
+                shouldShow = false;
+            }
+        } catch(e) {}
+    }
+
+    if (shouldShow) {
+        var hasTriggered = false;
+        
+        // Listen for scrolling
+        window.addEventListener('scroll', function() {
+            if (hasTriggered) return;
+            
+            var scrollPosition = window.scrollY || window.pageYOffset;
+            var windowHeight = window.innerHeight;
+            var documentHeight = document.documentElement.scrollHeight;
+            var distanceFromBottom = documentHeight - (scrollPosition + windowHeight);
+
+            // Trigger when 500px from the bottom
+            if (distanceFromBottom <= 500) {
+                var videoDiv = document.querySelector('.videoDemo');
+                if (videoDiv) {
+                    videoDiv.classList.add('videoDemo-show');
+                    hasTriggered = true;
+                    
+                    // Trigger autoplay when the popup becomes visible (saves data/bandwidth)
+                    var iframe = document.getElementById('yt-video-frame');
+                    if (iframe) {
+                        iframe.src += (iframe.src.indexOf('?') === -1 ? '?' : '&') + 'autoplay=1'; 
+                    }
+                }
+            }
+        });
+    }
+})();
+/*]]>*/
+</script>
 <footer class="footer">
   ΑΥΛΑΙΑ • ΜΕ ΧΛΙΑΡΟ ΧΑΛΟΥΜΙ • ΓΕΛΙΟ • ΚΑΙ ΤΟΥ ΠΡΟΕΔΡΟΥ ΤΑ ΡΙΑΛΙΑ <b><a target="_blank" href="https://i-epikaira.blogspot.com/2026/09/blog-post_24.html">ΕΔΩ!</a></b>
   <div class="small">Οι ατάκες ανήκουν αποκλειστικά στη σελίδα iEpikaira. Αντιγράφετε ελεύθερα...</div>
